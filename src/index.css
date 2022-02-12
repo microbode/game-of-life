@@ -1,23 +1,39 @@
-html,
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-  width: 100%;
+@import "styles/normalization";
+
+:root {
+  /* FONTS */
+  --font-base: "Montserrat", sans-serif;
+  --font-headings: "Biryani";
+
+  --font-light: 400;
+  --font-medium: 500;
+  --font-bold: 600;
+
+  /* COLORS */
+  /* App colors */
+  --blue: #3f9fc9;
+  --green: #4cdec4;
+  --yellow: #fdc468;
+  --orange: #f17c72;
+  --blue-dark: #373760;
+  --sponsors-bg: var(--blue);
 }
 
-#root {
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-family: var(--font-base);
+  line-height: 1.5;
+  font-weight: var(--font-light);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
+  flex-direction: column;
+  min-height: 100vh;
   background: #939393;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+#root {
+  flex-grow: 1;
 }

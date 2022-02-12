@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
 export const StyledAppContainer = styled.div`
+  //Wrapper
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 85%;
+
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 12px;
 `;
 
