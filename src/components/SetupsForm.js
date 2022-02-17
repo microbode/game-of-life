@@ -1,15 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import {
-  StyledContainer,
-  StyledForm,
-  StyledFormHead,
-  PatternsBlock,
-  Column,
-  CustomStyledSelect,
-  StyledButtonApply,
-} from "../styles";
+import { PatternsBlock, Column, CustomStyledSelect, StyledButtonApply } from "../styles/styles";
 import SETUPS from "../setups";
 
 const SetupsForm = ({ cells, setCells, running }) => {
@@ -22,9 +14,9 @@ const SetupsForm = ({ cells, setCells, running }) => {
   };
 
   return (
-    <StyledContainer>
-      <StyledFormHead>Setups</StyledFormHead>
-      <StyledForm onSubmit={handleSubmit(handleApplySetup)}>
+    <section>
+      <h3>Setups</h3>
+      <form className={"setup-form"} onSubmit={handleSubmit(handleApplySetup)}>
         <PatternsBlock>
           <Column>
             <CustomStyledSelect {...register("setup")} defaultValue={"block"} disabled={running}>
@@ -42,8 +34,8 @@ const SetupsForm = ({ cells, setCells, running }) => {
             </StyledButtonApply>
           </Column>
         </PatternsBlock>
-      </StyledForm>
-    </StyledContainer>
+      </form>
+    </section>
   );
 };
 

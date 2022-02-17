@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { getColumsNumber, getRowsNumber, flipOneCell } from "../helpers";
-import { Grid, Cell, StyledGridContainer } from "../styles";
+import { Grid, Cell, StyledGridContainer } from "../styles/styles";
 
 const Board = ({ cells, cellSize, height, setCells, width }) => {
   const [mouseDown, setMouseDown] = useState(false);

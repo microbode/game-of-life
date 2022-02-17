@@ -1,0 +1,60 @@
+
+/*------------------------------------*\
+    $VARIABLES
+\*------------------------------------*/
+
+:root {
+    /* FONTS */
+    --font-base: "Montserrat", sans-serif;
+    --font-headings: "Biryani";
+
+    --font-light: 400;
+    --font-medium: 500;
+    --font-bold: 600;
+
+    /* COLORS */
+    //App colors
+    --blue: #3f9fc9;
+    --green: #4cdec4;
+    --yellow: #fdc468;
+    --orange: #f17c72;
+    --blue-dark: #373760;
+    --sponsors-bg: var(--blue);
+
+    //Text
+    --text-color: var(--blue-dark);
+
+    /* SIZES */
+    --header-height: 5rem;
+    --footer-height: var(--header-height);
+}
+
+/*------------------------------------*\
+    $MIXINS
+\*------------------------------------*/
+
+//WRAPPERS: Center and max-width body.
+@mixin wrapper($width: 100%, $max-width: 100%) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $max-width;
+    width: $width;
+}
+
+/*------------------------------------*\
+    $FUNCTIONS
+\*------------------------------------*/
+
+/* Z-INDEX CONTROL */
+$elements: header, modal, loading;
+
+@function z($element) {
+    @return index($elements, $element);
+}
+
+/* REM */
+$base-fontsize: 16;
+// PIXEL TO REM: height: rem(50) -> 3.125rem;
+@function rem($px, $context: $base-fontsize) {
+    @return ($px / $context) * 1rem;
+}

@@ -1,30 +1,6 @@
 import styled from "styled-components";
 
-export const StyledAppContainer = styled.div`
-  //Wrapper
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 85%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-`;
-
 export const StyledGridContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 3em;
-  margin-bottom: 3em;
-`;
-
-export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
 `;
@@ -33,11 +9,6 @@ export const StyledFormHead = styled.div`
   font-size: 1.7em;
   font-weight: bold;
   margin-bottom: 1em;
-`;
-
-export const StyledLabel = styled.label`
-  font-size: 1em;
-  margin-bottom: 0.5em;
 `;
 
 export const StyledInput = styled.input`
@@ -125,8 +96,6 @@ export const Grid = styled.div`
   grid-template-columns: ${({ columnsNumber, cellSize }) =>
     `repeat(${columnsNumber}, ${cellSize}px)`};
   grid-template-rows: ${({ rowsNumber, cellSize }) => `repeat(${rowsNumber}, ${cellSize}px)`};
-  margin-left: 4em;
-  margin-right: 4em;
 `;
 
 export const Cell = styled.div`
@@ -163,8 +132,6 @@ export const CustomStyledInput = styled(StyledInput)`
   margin-bottom: 0;
   text-align: right;
 `;
-
-export const CustomStyledLabel = styled(StyledLabel)``;
 
 export const StyledButtonAdd = styled(StyledButton)`
   margin-left: 0.5em;

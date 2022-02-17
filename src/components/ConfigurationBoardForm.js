@@ -1,15 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import {
-  StyledContainer,
-  StyledForm,
-  StyledFormHead,
-  StyledLabel,
-  StyledInput,
-  StyledSelect,
-} from "../styles";
-
 const ConfigurationBoardForm = ({
   boardWidth,
   boardHeight,
@@ -40,33 +31,41 @@ const ConfigurationBoardForm = ({
   };
 
   return (
-    <StyledContainer>
-      <StyledFormHead>Board configuration</StyledFormHead>
-      <StyledForm>
-        <StyledLabel htmlFor="boardWidth">Width</StyledLabel>
-        <StyledSelect
+    <section>
+      <h3>Board configuration</h3>
+      <form className={"board-configuration-form"}>
+        <label htmlFor="boardWidth">Width</label>
+        <select
           {...register("boardWidth", { setValueAs: (v) => parseInt(v) })}
           defaultValue={boardWidth}
           onChange={handleChangeWidth}
           disabled={running}
         >
+          <option value={300}>300</option>
+          <option value={400}>400</option>
+          <option value={500}>500</option>
+          <option value={600}>600</option>
           <option value={700}>700</option>
           <option value={800}>800</option>
           <option value={900}>900</option>
-        </StyledSelect>
-        <StyledLabel htmlFor="boardHeight">Height</StyledLabel>
-        <StyledSelect
+        </select>
+        <label htmlFor="boardHeight">Height</label>
+        <select
           {...register("boardHeight", { setValueAs: (v) => parseInt(v) })}
           defaultValue={boardHeight}
           onChange={handleChangeHeight}
           disabled={running}
         >
+          <option value={300}>300</option>
+          <option value={400}>400</option>
+          <option value={500}>500</option>
+          <option value={600}>600</option>
           <option value={700}>700</option>
           <option value={800}>800</option>
           <option value={900}>900</option>
-        </StyledSelect>
-        <StyledLabel htmlFor="cellSize">Cell size</StyledLabel>
-        <StyledSelect
+        </select>
+        <label htmlFor="cellSize">Cell size</label>
+        <select
           {...register("cellSize", { setValueAs: (v) => parseInt(v) })}
           type="number"
           defaultValue={cellSize}
@@ -75,9 +74,9 @@ const ConfigurationBoardForm = ({
         >
           <option value={10}>10</option>
           <option value={20}>20</option>
-        </StyledSelect>
-        <StyledLabel htmlFor="refreshRate">Refresh rate (ms)</StyledLabel>
-        <StyledInput
+        </select>
+        <label htmlFor="refreshRate">Refresh</label>
+        <input
           {...register("refreshRate", { setValueAs: (v) => parseInt(v) })}
           type="number"
           step={100}
@@ -86,8 +85,8 @@ const ConfigurationBoardForm = ({
           onChange={handleChangeRate}
           disabled={running}
         />
-      </StyledForm>
-    </StyledContainer>
+      </form>
+    </section>
   );
 };
 

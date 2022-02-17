@@ -2,16 +2,12 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import React from "react";
 import {
-  StyledContainer,
-  StyledForm,
-  StyledFormHead,
   PatternsBlock,
   Column,
-  CustomStyledLabel,
   CustomStyledSelect,
   CustomStyledInput,
   StyledButtonAdd,
-} from "../styles";
+} from "../styles/styles";
 import { applyPattern } from "../helpers";
 import * as PATTERNS from "../patterns";
 
@@ -28,12 +24,12 @@ const PatternsForm = ({ cells, setCells, running }) => {
   };
 
   return (
-    <StyledContainer>
-      <StyledFormHead>Patterns</StyledFormHead>
-      <StyledForm onSubmit={handleSubmit(handleAddPattern)}>
+    <section>
+      <h3>Patterns</h3>
+      <form className={"patterns-form"} onSubmit={handleSubmit(handleAddPattern)}>
         <PatternsBlock>
           <Column>
-            <CustomStyledLabel htmlFor="pattern">Pattern</CustomStyledLabel>
+            <label htmlFor="pattern">Pattern</label>
             <CustomStyledSelect {...register("pattern")} defaultValue={"block"} disabled={running}>
               {Object.keys(PATTERNS).map((pattern) => (
                 <option key={pattern} value={pattern}>
@@ -44,7 +40,7 @@ const PatternsForm = ({ cells, setCells, running }) => {
           </Column>
 
           <Column>
-            <CustomStyledLabel htmlFor="x">X</CustomStyledLabel>
+            <label htmlFor="x">X</label>
             <CustomStyledInput
               {...register("x", { setValueAs: (v) => parseInt(v) })}
               type="text"
@@ -54,7 +50,7 @@ const PatternsForm = ({ cells, setCells, running }) => {
           </Column>
 
           <Column>
-            <CustomStyledLabel htmlFor="y">Y</CustomStyledLabel>
+            <label htmlFor="y">Y</label>
             <CustomStyledInput
               {...register("y", { setValueAs: (v) => parseInt(v) })}
               type="text"
@@ -69,8 +65,8 @@ const PatternsForm = ({ cells, setCells, running }) => {
             </StyledButtonAdd>
           </Column>
         </PatternsBlock>
-      </StyledForm>
-    </StyledContainer>
+      </form>
+    </section>
   );
 };
 

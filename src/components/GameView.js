@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
 import { getColumsNumber, getRowsNumber } from "../helpers";
+import { StyledButtonGo, StyledButtonStop, StyledButtonContainer } from "../styles/styles";
 import Board from "./Board";
 import ConfigurationBoardForm from "./ConfigurationBoardForm";
 import PatternsForm from "./PatternsForm";
 import SetupsForm from "./SetupsForm";
-import {
-  StyledAppContainer,
-  StyledButtonGo,
-  StyledButtonStop,
-  StyledButtonContainer,
-} from "../styles";
 
 const getEmptyCellsState = (boardWidth, boardHeight, cellSize) => {
   const columnsNumber = getColumsNumber(boardWidth, cellSize);
@@ -137,7 +132,7 @@ function GameView() {
   };
 
   return (
-    <StyledAppContainer>
+    <>
       <ConfigurationBoardForm
         boardHeight={boardHeight}
         boardWidth={boardWidth}
@@ -148,13 +143,6 @@ function GameView() {
         setCellSize={setCellSize}
         setRefreshRate={setRefreshRate}
         running={running}
-      />
-      <Board
-        cells={cells}
-        cellSize={cellSize}
-        height={boardHeight}
-        width={boardWidth}
-        setCells={setCells}
       />
       <div>
         <PatternsForm
@@ -177,7 +165,14 @@ function GameView() {
           )}
         </StyledButtonContainer>
       </div>
-    </StyledAppContainer>
+      <Board
+        cells={cells}
+        cellSize={cellSize}
+        height={boardHeight}
+        width={boardWidth}
+        setCells={setCells}
+      />
+    </>
   );
 }
 
