@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import { PatternsBlock, Column, CustomStyledSelect, StyledButtonApply } from "../styles/styles";
 import SETUPS from "../setups";
 
 const SetupsForm = ({ cells, setCells, running }) => {
@@ -17,23 +16,17 @@ const SetupsForm = ({ cells, setCells, running }) => {
     <section>
       <h3>Setups</h3>
       <form className={"setup-form"} onSubmit={handleSubmit(handleApplySetup)}>
-        <PatternsBlock>
-          <Column>
-            <CustomStyledSelect {...register("setup")} defaultValue={"block"} disabled={running}>
-              {Object.keys(SETUPS).map((setup) => (
-                <option key={setup} value={setup}>
-                  {`${setup.charAt(0) + setup.slice(1).toLowerCase()}`}
-                </option>
-              ))}
-            </CustomStyledSelect>
-          </Column>
+        <select {...register("setup")} defaultValue={"block"} disabled={running}>
+          {Object.keys(SETUPS).map((setup) => (
+            <option key={setup} value={setup}>
+              {`${setup.charAt(0) + setup.slice(1).toLowerCase()}`}
+            </option>
+          ))}
+        </select>
 
-          <Column>
-            <StyledButtonApply type="submit" disabled={running}>
-              Apply
-            </StyledButtonApply>
-          </Column>
-        </PatternsBlock>
+        <button type="submit" disabled={running}>
+          Apply
+        </button>
       </form>
     </section>
   );

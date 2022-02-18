@@ -123,16 +123,6 @@ export const PatternsBlock = styled.div`
   display: flex;
 `;
 
-export const CustomStyledSelect = styled(StyledSelect)`
-  margin-bottom: 0;
-`;
-
-export const CustomStyledInput = styled(StyledInput)`
-  max-width: 3em;
-  margin-bottom: 0;
-  text-align: right;
-`;
-
 export const StyledButtonAdd = styled(StyledButton)`
   margin-left: 0.5em;
 `;

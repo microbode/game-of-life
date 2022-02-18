@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { getColumsNumber, getRowsNumber } from "../helpers";
-import { StyledButtonGo, StyledButtonStop, StyledButtonContainer } from "../styles/styles";
 import Board from "./Board";
 import ConfigurationBoardForm from "./ConfigurationBoardForm";
 import PatternsForm from "./PatternsForm";
@@ -133,18 +132,18 @@ function GameView() {
 
   return (
     <>
-      <ConfigurationBoardForm
-        boardHeight={boardHeight}
-        boardWidth={boardWidth}
-        cellSize={cellSize}
-        refreshRate={refreshRate}
-        setBoardHeight={setBoardHeight}
-        setBoardWidth={setBoardWidth}
-        setCellSize={setCellSize}
-        setRefreshRate={setRefreshRate}
-        running={running}
-      />
-      <div>
+      <div className="configuraion-container">
+        <ConfigurationBoardForm
+          boardHeight={boardHeight}
+          boardWidth={boardWidth}
+          cellSize={cellSize}
+          refreshRate={refreshRate}
+          setBoardHeight={setBoardHeight}
+          setBoardWidth={setBoardWidth}
+          setCellSize={setCellSize}
+          setRefreshRate={setRefreshRate}
+          running={running}
+        />
         <PatternsForm
           cells={cells}
           setCells={setCells}
@@ -157,13 +156,17 @@ function GameView() {
           running={running}
           toogleRunning={toggleRunning}
         />
-        <StyledButtonContainer>
+        <div className="button-container">
           {running ? (
-            <StyledButtonStop onClick={toggleRunning}>Stop</StyledButtonStop>
+            <button className="stop" onClick={toggleRunning}>
+              Stop
+            </button>
           ) : (
-            <StyledButtonGo onClick={toggleRunning}>Go!</StyledButtonGo>
+            <button className="go" onClick={toggleRunning}>
+              Go!
+            </button>
           )}
-        </StyledButtonContainer>
+        </div>
       </div>
       <Board
         cells={cells}
