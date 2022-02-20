@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { getColumsNumber, getRowsNumber, flipOneCell } from "../helpers";
-import { Grid, Cell, StyledGridContainer } from "../styles/styles";
+import { Grid, Cell } from "../styles/styles";
 
 const Board = ({ cells, cellSize, height, setCells, width }) => {
   const [mouseDown, setMouseDown] = useState(false);
@@ -26,7 +26,7 @@ const Board = ({ cells, cellSize, height, setCells, width }) => {
   };
 
   return (
-    <StyledGridContainer>
+    <div className={"grid-container"}>
       <Grid
         width={width}
         height={height}
@@ -47,7 +47,7 @@ const Board = ({ cells, cellSize, height, setCells, width }) => {
           ))
         )}
       </Grid>
-    </StyledGridContainer>
+    </div>
   );
 };
 

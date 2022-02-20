@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-export const StyledGridContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const Grid = styled.div`
   background: black;
   width: ${({ width }) => `${width}px`};
