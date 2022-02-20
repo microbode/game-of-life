@@ -13,7 +13,7 @@ const SetupsForm = ({ cells, setCells, running }) => {
   };
 
   return (
-    <section>
+    <section className={"setups"}>
       <h3>Setups</h3>
       <form className={"setup-form"} onSubmit={handleSubmit(handleApplySetup)}>
         <select {...register("setup")} defaultValue={"block"} disabled={running}>

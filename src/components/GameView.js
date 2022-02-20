@@ -132,7 +132,7 @@ function GameView() {
 
   return (
     <>
-      <div className="configuraion-container">
+      <div className="configuration-container">
         <ConfigurationBoardForm
           boardHeight={boardHeight}
           boardWidth={boardWidth}

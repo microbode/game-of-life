@@ -17,7 +17,7 @@ const PatternsForm = ({ cells, setCells, running }) => {
   };
 
   return (
-    <section>
+    <section className={"patterns"}>
       <h3>Patterns</h3>
       <form className={"patterns-form"} onSubmit={handleSubmit(handleAddPattern)}>
         <div className={"patterns-form__column"}>

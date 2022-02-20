@@ -31,7 +31,7 @@ const ConfigurationBoardForm = ({
   };
 
   return (
-    <section>
+    <section className={"configuraion-board"}>
       <h3>Board configuration</h3>
       <form className={"board-configuration-form"}>
         <label htmlFor="boardWidth">Width</label>

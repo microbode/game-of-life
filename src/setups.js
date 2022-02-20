@@ -52,8 +52,8 @@ const getSetup2 = (state) => {
 };
 
 const setups = {
-  Setup1: getSetup1,
-  Setup2: getSetup2,
+  "Setup 1": getSetup1,
+  "Setup 2": getSetup2,
 };
 
 export default setups;
