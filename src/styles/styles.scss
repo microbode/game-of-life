@@ -32,14 +32,26 @@ h3 {
 
 #root {
   display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: rem(30);
   align-items: center;
-  justify-content: space-evenly;
-  margin-top: rem(20);
-  margin-bottom: rem(20);
+  margin-top: rem(30);
+  margin-bottom: rem(30);
+
+  @media screen and (min-width: 950px) {
+    display: flex;
+    flex-direction: row;
+    gap: rem(30);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: rem(20);
+    margin-bottom: rem(20);
+  }
 
   @media screen and (min-width: 1300px) {
+    display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
     flex-grow: 1;
