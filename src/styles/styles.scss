@@ -52,10 +52,8 @@ h3 {
   @media screen and (min-width: 1300px) {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: center;
-    flex-grow: 1;
-    gap: 2rem;
+    gap: 5rem;
   }
 }
 
@@ -243,19 +241,17 @@ button {
   @media screen and (min-width: 1300px) {
     margin-left: unset;
     margin-right: unset;
-    padding-left: rem(300);
+    padding-left: rem(100);
     width: unset;
     max-width: unset;
     flex-direction: column;
     gap: 1rem;
     align-items: center;
-    min-width: 40%;
     max-width: unset;
   }
 }
 
 .grid-container {
   display: flex;
-  flex-grow: 1;
   justify-content: center;
 }
