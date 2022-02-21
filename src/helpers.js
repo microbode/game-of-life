@@ -23,3 +23,14 @@ export const flipOneCell = ({ cells, x, y }) => {
   newCells[x][y] = value;
   return newCells;
 };
+
+export const getSizes = () => {
+  const sizes = [300, 400, 500, 600, 700, 800, 900];
+  const windowWidth = window.innerWidth;
+  return sizes.filter((size) => size < windowWidth - 50);
+};
+
+export const getMaxValidSize = () => {
+  const validSizes = getSizes();
+  return Math.max(...validSizes);
+};

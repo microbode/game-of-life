@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
+import { getSizes, getMaxValidSize } from "../helpers";
+
 const ConfigurationBoardForm = ({
   boardWidth,
   boardHeight,
@@ -12,7 +14,23 @@ const ConfigurationBoardForm = ({
   setRefreshRate,
   running,
 }) => {
-  const { register } = useForm();
+  const { register, setValue } = useForm();
+
+  useEffect(() => {
+    const setBoardDimension = () => {
+      const size = getMaxValidSize();
+      setBoardWidth(size);
+      setBoardHeight(size);
+      setValue("boardWidth", size);
+      setValue("boardHeight", size);
+    };
+
+    window.addEventListener("resize", setBoardDimension);
+
+    return () => {
+      window.removeEventListener("resize", setBoardDimension);
+    };
+  }, []);
 
   const handleChangeWidth = (event) => {
     setBoardWidth(Number(event.target.value));
@@ -41,13 +59,11 @@ const ConfigurationBoardForm = ({
           onChange={handleChangeWidth}
           disabled={running}
         >
-          <option value={300}>300</option>
-          <option value={400}>400</option>
-          <option value={500}>500</option>
-          <option value={600}>600</option>
-          <option value={700}>700</option>
-          <option value={800}>800</option>
-          <option value={900}>900</option>
+          {getSizes().map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
         </select>
         <label htmlFor="boardHeight">Height</label>
         <select
@@ -56,13 +72,11 @@ const ConfigurationBoardForm = ({
           onChange={handleChangeHeight}
           disabled={running}
         >
-          <option value={300}>300</option>
-          <option value={400}>400</option>
-          <option value={500}>500</option>
-          <option value={600}>600</option>
-          <option value={700}>700</option>
-          <option value={800}>800</option>
-          <option value={900}>900</option>
+          {getSizes().map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
         </select>
         <label htmlFor="cellSize">Cell size</label>
         <select

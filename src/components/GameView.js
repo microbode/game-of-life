@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getColumsNumber, getRowsNumber } from "../helpers";
+import { getColumsNumber, getRowsNumber, getMaxValidSize } from "../helpers";
 import Board from "./Board";
 import ConfigurationBoardForm from "./ConfigurationBoardForm";
 import PatternsForm from "./PatternsForm";
@@ -80,8 +80,8 @@ const applyRules = (cells) => {
 };
 
 function GameView() {
-  const [boardWidth, setBoardWidth] = useState(900);
-  const [boardHeight, setBoardHeight] = useState(900);
+  const [boardWidth, setBoardWidth] = useState(getMaxValidSize());
+  const [boardHeight, setBoardHeight] = useState(getMaxValidSize());
   const [cellSize, setCellSize] = useState(10);
   const [refreshRate, setRefreshRate] = useState(0);
   const [cells, setCells] = useState(() => getEmptyCellsState(boardWidth, boardHeight, cellSize));
