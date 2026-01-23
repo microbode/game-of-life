@@ -28,23 +28,22 @@ const Board = ({ cells, cellSize, height, setCells, width }) => {
   return (
     <div className={"grid-container"}>
       <Grid
-        width={width}
-        height={height}
-        color="black"
-        cellSize={cellSize}
-        columnsNumber={columnsNumber}
-        rowsNumber={rowsNumber}
+        $width={width}
+        $height={height}
+        $cellSize={cellSize}
+        $columnsNumber={columnsNumber}
+        $rowsNumber={rowsNumber}
       >
         {cells.map((column, xIndex) =>
           column.map((cell, yIndex) => (
             <Cell
               key={`${xIndex}${yIndex}`}
-              alive={cell}
+              $alive={cell}
               onMouseDown={handleCellClickDown(xIndex, yIndex)}
               onMouseUp={handleCellClickUp}
               onMouseOver={handleMouseOver(xIndex, yIndex)}
             />
-          ))
+          )),
         )}
       </Grid>
     </div>
