@@ -1,3 +1,4 @@
+@use "sass:math";
 
 /*------------------------------------*\
     $VARIABLES
@@ -57,5 +58,5 @@ $elements: header, modal, loading;
 $base-fontsize: 16;
 // PIXEL TO REM: height: rem(50) -> 3.125rem;
 @function rem($px, $context: $base-fontsize) {
-    @return ($px / $context) * 1rem;
+    @return math.div($px, $context) * 1rem;
 }

@@ -116,7 +116,7 @@ function GameView() {
         setTimeout(() => {
           const newCells = applyRules(cells);
           resolve(newCells);
-        }, refreshRate)
+        }, refreshRate),
       );
       setCells(newCells);
     };
