@@ -33,6 +33,7 @@ export default [
       react: {
         version: "detect",
       },
+      "import/ignore": ["vite", "@vitejs/plugin-react"],
     },
     rules: {
       ...react.configs.recommended.rules,

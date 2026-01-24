@@ -49,7 +49,7 @@ const ConfigurationBoardForm = ({
   };
 
   return (
-    <section className={"configuraion-board"}>
+    <section>
       <h3>Board configuration</h3>
       <form className={"board-configuration-form"}>
         <label htmlFor="boardWidth">Width</label>
