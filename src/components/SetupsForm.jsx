@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import SETUPS from "../setups";
@@ -13,22 +12,29 @@ const SetupsForm = ({ cells, setCells, running }) => {
   };
 
   return (
-    <section className={"setups"}>
-      <h3>Setups</h3>
-      <form className={"setup-form"} onSubmit={handleSubmit(handleApplySetup)}>
-        <select {...register("setup")} defaultValue={"block"} disabled={running}>
+    <form className="flex flex-col gap-3" onSubmit={handleSubmit(handleApplySetup)}>
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="setup" className="label-scientific">
+          Preset
+        </label>
+        <select
+          {...register("setup")}
+          defaultValue={Object.keys(SETUPS)[0]}
+          disabled={running}
+          className="input-scientific"
+        >
           {Object.keys(SETUPS).map((setup) => (
             <option key={setup} value={setup}>
-              {`${setup.charAt(0) + setup.slice(1).toLowerCase()}`}
+              {setup.charAt(0) + setup.slice(1).toLowerCase()}
             </option>
           ))}
         </select>
+      </div>
 
-        <button type="submit" disabled={running}>
-          Apply
-        </button>
-      </form>
-    </section>
+      <button type="submit" disabled={running} className="btn-primary">
+        Apply Setup
+      </button>
+    </form>
   );
 };
 
