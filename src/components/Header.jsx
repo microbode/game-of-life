@@ -2,6 +2,24 @@ import PropTypes from "prop-types";
 import { PlayButton } from "./PlayButton";
 import { ActionButton } from "./ActionButton";
 
+const GridIcon = ({ size = 32 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <rect x="3" y="3" width="5" height="5" rx="1" />
+    <rect x="10" y="3" width="5" height="5" rx="1" />
+    <rect x="17" y="3" width="5" height="5" rx="1" opacity="0.3" />
+    <rect x="3" y="10" width="5" height="5" rx="1" opacity="0.3" />
+    <rect x="10" y="10" width="5" height="5" rx="1" />
+    <rect x="17" y="10" width="5" height="5" rx="1" />
+    <rect x="3" y="17" width="5" height="5" rx="1" />
+    <rect x="10" y="17" width="5" height="5" rx="1" opacity="0.3" />
+    <rect x="17" y="17" width="5" height="5" rx="1" />
+  </svg>
+);
+
+GridIcon.propTypes = {
+  size: PropTypes.number,
+};
+
 const DiceIcon = () => (
   <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <rect
@@ -41,9 +59,19 @@ const TrashIcon = () => (
 export function Header({ generation, liveCells, running, onToggleRunning, onRandomize, onClear }) {
   return (
     <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-4 lg:px-6">
-      <h1 className="text-lg lg:text-xl font-semibold tracking-tight text-gray-900">
-        Game of Life
-      </h1>
+      <div className="flex items-center gap-2.5">
+        <GridIcon size={24} />
+        <h1
+          style={{
+            fontSize: "1.375rem",
+            fontWeight: 700,
+            letterSpacing: "-0.01em",
+            color: "#1d1d1f",
+          }}
+        >
+          Game of Life
+        </h1>
+      </div>
 
       {/* Control Group - Center */}
       <div className="flex items-center gap-2">
