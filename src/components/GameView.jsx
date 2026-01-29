@@ -135,7 +135,7 @@ function GameView() {
   };
 
   const handlePatternPlace = () => {
-    setSelectedPattern(null);
+    // Pattern stays selected to allow multiple placements
   };
 
   const toggleMobilePanel = (panel) => {
