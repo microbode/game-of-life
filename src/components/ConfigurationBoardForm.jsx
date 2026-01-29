@@ -41,8 +41,11 @@ const ConfigurationBoardForm = ({
   };
 
   const handleChangeRate = (event) => {
-    setRefreshRate(Number(event.target.value));
+    const genPerSecond = Number(event.target.value);
+    setRefreshRate(Math.round(1000 / genPerSecond));
   };
+
+  const genPerSecond = Math.round(1000 / refreshRate);
 
   return (
     <form className="space-y-4">
@@ -111,28 +114,24 @@ const ConfigurationBoardForm = ({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="refreshRate" className="label-scientific">
-          Speed (ms)
-        </label>
-        <div className="flex items-center gap-3">
-          <input
-            {...register("refreshRate", { setValueAs: (v) => parseInt(v) })}
-            type="range"
-            min={0}
-            max={500}
-            step={50}
-            defaultValue={refreshRate}
-            onChange={handleChangeRate}
-            disabled={running}
-            className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
-          />
-          <span
-            className="w-16 text-right text-sm text-gray-900"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            {refreshRate}ms
+        <div className="flex justify-between items-center">
+          <label htmlFor="refreshRate" className="label-scientific">
+            Speed
+          </label>
+          <span className="text-xs text-gray-500" style={{ fontFamily: "var(--font-mono)" }}>
+            {genPerSecond}
           </span>
         </div>
+        <input
+          type="range"
+          min={1}
+          max={10}
+          step={1}
+          value={genPerSecond}
+          onChange={handleChangeRate}
+          disabled={running}
+          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+        />
       </div>
     </form>
   );

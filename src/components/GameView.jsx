@@ -16,65 +16,39 @@ const getEmptyCellsState = (boardWidth, boardHeight, cellSize) => {
   return state;
 };
 
-const countNeighbours = (neighbours) => {
-  const alive = neighbours.filter((n) => n);
-  const dead = neighbours.filter((n) => !n);
-  return { alive: alive.length, dead: dead.length };
-};
-
-const getNeighbours = ({ cells, column, row }) => {
+const countAliveNeighbours = (cells, column, row) => {
   const columnsNumber = cells.length;
   const rowsNumber = cells[0].length;
-  const neighbours = [];
   const x = column + columnsNumber;
   const y = row + rowsNumber;
-  neighbours.push(cells[(x - 1) % columnsNumber][(y - 1) % rowsNumber]);
-  neighbours.push(cells[x % columnsNumber][(y - 1) % rowsNumber]);
-  neighbours.push(cells[(x + 1) % columnsNumber][(y - 1) % rowsNumber]);
-  neighbours.push(cells[(x + 1) % columnsNumber][y % rowsNumber]);
-  neighbours.push(cells[(x + 1) % columnsNumber][(y + 1) % rowsNumber]);
-  neighbours.push(cells[x % columnsNumber][(y + 1) % rowsNumber]);
-  neighbours.push(cells[(x - 1) % columnsNumber][(y + 1) % rowsNumber]);
-  neighbours.push(cells[(x - 1) % columnsNumber][y % rowsNumber]);
-  return countNeighbours(neighbours);
-};
 
-const rule1 = ({ cells, row, column }) => {
-  const { alive } = getNeighbours({
-    cells,
-    column,
-    row,
-  });
-  return alive === 2 || alive === 3 ? 1 : 0;
-};
+  let count = 0;
+  if (cells[(x - 1) % columnsNumber][(y - 1) % rowsNumber]) count++;
+  if (cells[x % columnsNumber][(y - 1) % rowsNumber]) count++;
+  if (cells[(x + 1) % columnsNumber][(y - 1) % rowsNumber]) count++;
+  if (cells[(x + 1) % columnsNumber][y % rowsNumber]) count++;
+  if (cells[(x + 1) % columnsNumber][(y + 1) % rowsNumber]) count++;
+  if (cells[x % columnsNumber][(y + 1) % rowsNumber]) count++;
+  if (cells[(x - 1) % columnsNumber][(y + 1) % rowsNumber]) count++;
+  if (cells[(x - 1) % columnsNumber][y % rowsNumber]) count++;
 
-const rule2 = ({ cells, column, row }) => {
-  const { alive } = getNeighbours({
-    cells,
-    column,
-    row,
-  });
-  return alive === 3 ? 1 : 0;
+  return count;
 };
 
 const applyRules = (cells) => {
+  const columnsNumber = cells.length;
+  const rowsNumber = cells[0].length;
   const newCells = cells.map((column) => [...column]);
-  for (let column = 0; column < cells.length; column++) {
-    for (let row = 0; row < cells?.[0]?.length; row++) {
-      const currentCell = cells[column][row];
-      const isAlive = currentCell;
-      if (isAlive) {
-        newCells[column][row] = rule1({
-          cells,
-          column,
-          row,
-        });
+
+  for (let column = 0; column < columnsNumber; column++) {
+    for (let row = 0; row < rowsNumber; row++) {
+      const alive = countAliveNeighbours(cells, column, row);
+      if (cells[column][row]) {
+        // Rule 1: célula viva sobrevive con 2 o 3 vecinos
+        newCells[column][row] = alive === 2 || alive === 3 ? 1 : 0;
       } else {
-        newCells[column][row] = rule2({
-          cells,
-          column,
-          row,
-        });
+        // Rule 2: célula muerta nace con exactamente 3 vecinos
+        newCells[column][row] = alive === 3 ? 1 : 0;
       }
     }
   }
@@ -85,7 +59,7 @@ function GameView() {
   const [boardWidth, setBoardWidth] = useState(900);
   const [boardHeight, setBoardHeight] = useState(600);
   const [cellSize, setCellSize] = useState(10);
-  const [refreshRate, setRefreshRate] = useState(0);
+  const [refreshRate, setRefreshRate] = useState(333);
   const [cells, setCells] = useState(() => getEmptyCellsState(boardWidth, boardHeight, cellSize));
   const [running, setRunning] = useState(false);
   const [generation, setGeneration] = useState(0);
@@ -93,7 +67,13 @@ function GameView() {
   const [mobilePanel, setMobilePanel] = useState(null);
 
   const liveCells = useMemo(() => {
-    return cells.flat().filter((cell) => cell).length;
+    let count = 0;
+    for (let i = 0; i < cells.length; i++) {
+      for (let j = 0; j < cells[i].length; j++) {
+        if (cells[i][j]) count++;
+      }
+    }
+    return count;
   }, [cells]);
 
   useEffect(() => {
@@ -105,13 +85,13 @@ function GameView() {
   useEffect(() => {
     if (!running) return;
 
-    const timeoutId = setTimeout(() => {
+    const intervalId = setInterval(() => {
       setCells((currentCells) => applyRules(currentCells));
       setGeneration((g) => g + 1);
     }, refreshRate);
 
-    return () => clearTimeout(timeoutId);
-  }, [running, refreshRate, cells]);
+    return () => clearInterval(intervalId);
+  }, [running, refreshRate]);
 
   const toggleRunning = () => {
     setRunning((running) => !running);

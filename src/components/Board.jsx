@@ -8,10 +8,11 @@ const Grid = ({ width, height, cellSize, columnsNumber, rowsNumber, patternMode,
     style={{
       width: `${width}px`,
       height: `${height}px`,
-      gridTemplateColumns: `repeat(${columnsNumber}, ${cellSize}px)`,
-      gridTemplateRows: `repeat(${rowsNumber}, ${cellSize}px)`,
-      backgroundColor: "var(--color-cell-dead)",
+      gridTemplateColumns: `repeat(${columnsNumber}, ${cellSize - 1}px)`,
+      gridTemplateRows: `repeat(${rowsNumber}, ${cellSize - 1}px)`,
+      backgroundColor: "var(--color-grid-line)",
       border: "1px solid var(--color-border-light)",
+      gap: "1px",
     }}
   >
     {children}
