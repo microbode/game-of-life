@@ -49,7 +49,7 @@ export function PlayButton({ running, onClick, disabled, size = "medium" }) {
         width: `${buttonSize}px`,
         height: `${buttonSize}px`,
         borderRadius: "50%",
-        backgroundColor: running ? "#ef4444" : "#3b82f6",
+        backgroundColor: running ? "#ef4444" : "#22c55e",
         color: "#ffffff",
         border: "none",
         cursor: disabled ? "not-allowed" : "pointer",
@@ -62,12 +62,12 @@ export function PlayButton({ running, onClick, disabled, size = "medium" }) {
       }}
       onMouseEnter={(e) => {
         if (!disabled) {
-          e.currentTarget.style.backgroundColor = running ? "#dc2626" : "#2563eb";
+          e.currentTarget.style.backgroundColor = running ? "#dc2626" : "#16a34a";
         }
       }}
       onMouseLeave={(e) => {
         if (!disabled) {
-          e.currentTarget.style.backgroundColor = running ? "#ef4444" : "#3b82f6";
+          e.currentTarget.style.backgroundColor = running ? "#ef4444" : "#22c55e";
         }
       }}
       onMouseDown={(e) => {
