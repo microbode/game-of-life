@@ -123,3 +123,27 @@ body {
   font-weight: 500;
   color: var(--color-text-primary);
 }
+
+// Cell size toggle buttons
+.cell-size-btn {
+  font-family: var(--font-mono);
+  background-color: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 200ms ease;
+
+  &:hover:not(:disabled) {
+    background-color: #e5e7eb;
+  }
+
+  &[data-selected="true"] {
+    background-color: #eff6ff;
+    border-color: #3b82f6;
+    color: #2563eb;
+
+    &:hover:not(:disabled) {
+      background-color: #dbeafe;
+    }
+  }
+}

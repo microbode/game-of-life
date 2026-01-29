@@ -93,16 +93,8 @@ const ConfigurationBoardForm = ({
             type="button"
             onClick={() => !running && setCellSize(10)}
             disabled={running}
-            className={`
-              flex-1 py-2 rounded-lg text-sm font-medium transition-all duration-200 border
-              ${
-                cellSize === 10
-                  ? "bg-gray-900 text-white border-gray-900"
-                  : "bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200"
-              }
-              disabled:opacity-50 disabled:cursor-not-allowed
-            `}
-            style={{ fontFamily: "var(--font-mono)" }}
+            data-selected={cellSize === 10}
+            className="cell-size-btn flex-1 py-2 rounded-lg text-sm font-medium border disabled:opacity-50 disabled:cursor-not-allowed"
           >
             10px
           </button>
@@ -110,16 +102,8 @@ const ConfigurationBoardForm = ({
             type="button"
             onClick={() => !running && setCellSize(20)}
             disabled={running}
-            className={`
-              flex-1 py-2 rounded-lg text-sm font-medium transition-all duration-200 border
-              ${
-                cellSize === 20
-                  ? "bg-gray-900 text-white border-gray-900"
-                  : "bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200"
-              }
-              disabled:opacity-50 disabled:cursor-not-allowed
-            `}
-            style={{ fontFamily: "var(--font-mono)" }}
+            data-selected={cellSize === 20}
+            className="cell-size-btn flex-1 py-2 rounded-lg text-sm font-medium border disabled:opacity-50 disabled:cursor-not-allowed"
           >
             20px
           </button>
