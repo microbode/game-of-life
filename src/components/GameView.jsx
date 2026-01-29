@@ -59,7 +59,7 @@ function GameView() {
   const [boardWidth, setBoardWidth] = useState(900);
   const [boardHeight, setBoardHeight] = useState(600);
   const [cellSize, setCellSize] = useState(10);
-  const [refreshRate, setRefreshRate] = useState(333);
+  const [refreshRate, setRefreshRate] = useState(100);
   const [cells, setCells] = useState(() => getEmptyCellsState(boardWidth, boardHeight, cellSize));
   const [running, setRunning] = useState(false);
   const [generation, setGeneration] = useState(0);
