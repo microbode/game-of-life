@@ -42,9 +42,10 @@ export function PlayButton({ running, onClick, disabled, size = "medium" }) {
   return (
     <button
       type="button"
+      data-testid="play-button"
       onClick={onClick}
       disabled={disabled}
-      aria-label={running ? "Stop simulation" : "Start simulation"}
+      aria-label={running ? "Pause" : "Play"}
       style={{
         width: `${buttonSize}px`,
         height: `${buttonSize}px`,

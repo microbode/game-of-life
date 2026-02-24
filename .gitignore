@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# acceptance test pipeline — generated artifacts (do not commit)
+/acceptance-pipeline/ir/
+/generated-acceptance-tests/
+
 # production
 /build
 

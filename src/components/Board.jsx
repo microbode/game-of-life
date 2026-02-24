@@ -34,6 +34,7 @@ const Cell = memo(
     <div
       data-x={x}
       data-y={y}
+      data-testid={`cell-${x}-${y}`}
       className={`cell ${alive ? "cell--alive" : "cell--dead"}`}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}

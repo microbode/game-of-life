@@ -4,10 +4,21 @@ import Board from "./Board";
 import ConfigurationBoardForm from "./ConfigurationBoardForm";
 import PatternsForm from "./PatternsForm";
 import SetupsForm from "./SetupsForm";
+import { SaveLoadForm } from "./SaveLoadForm";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
 import { AccordionSection } from "./AccordionSection";
 import { MobileControlBar } from "./MobileControlBar";
+
+const LS_KEY = "gol_saved_boards";
+
+const readSavedBoards = () => {
+  try {
+    return JSON.parse(localStorage.getItem(LS_KEY) || "{}");
+  } catch {
+    return {};
+  }
+};
 
 const getEmptyCellsState = (boardWidth, boardHeight, cellSize) => {
   const columnsNumber = getColumsNumber(boardWidth, cellSize);
@@ -65,6 +76,7 @@ function GameView() {
   const [generation, setGeneration] = useState(0);
   const [selectedPattern, setSelectedPattern] = useState(null);
   const [mobilePanel, setMobilePanel] = useState(null);
+  const [savedBoards, setSavedBoards] = useState(readSavedBoards);
 
   const liveCells = useMemo(() => {
     let count = 0;
@@ -122,6 +134,27 @@ function GameView() {
     setMobilePanel(mobilePanel === panel ? null : panel);
   };
 
+  const handleSaveBoard = (name, cells) => {
+    const updated = { ...savedBoards, [name]: { cells, savedAt: new Date().toISOString() } };
+    setSavedBoards(updated);
+    localStorage.setItem(LS_KEY, JSON.stringify(updated));
+  };
+
+  const handleLoadBoard = (name) => {
+    const saved = savedBoards[name];
+    if (!saved) return;
+    setCells(saved.cells);
+    setGeneration(0);
+    setRunning(false);
+  };
+
+  const handleDeleteBoard = (name) => {
+    const updated = { ...savedBoards };
+    delete updated[name];
+    setSavedBoards(updated);
+    localStorage.setItem(LS_KEY, JSON.stringify(updated));
+  };
+
   return (
     <div className="h-screen flex bg-gray-50 overflow-hidden">
       {/* Desktop Sidebar - Full Height */}
@@ -154,6 +187,18 @@ function GameView() {
 
           <AccordionSection title="Setups">
             <SetupsForm cells={cells} setCells={setCells} running={running} />
+          </AccordionSection>
+
+          <AccordionSection title="Saved Boards" defaultOpen>
+            <SaveLoadForm
+              cells={cells}
+              liveCells={liveCells}
+              savedBoards={savedBoards}
+              isRunning={running}
+              onSave={handleSaveBoard}
+              onLoad={handleLoadBoard}
+              onDelete={handleDeleteBoard}
+            />
           </AccordionSection>
         </Sidebar>
       </div>

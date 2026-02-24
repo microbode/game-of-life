@@ -93,6 +93,7 @@ export function Header({ generation, liveCells, running, onToggleRunning, onRand
             Gen
           </span>
           <span
+            data-testid="generation-counter"
             className="text-sm lg:text-base font-medium text-gray-900 tabular-nums"
             style={{ fontFamily: "var(--font-mono)" }}
           >
